@@ -1,18 +1,20 @@
 一键源码安装MySQL的脚本
-=======================
-<br/>
-1.检测是否安装MySQL
---------------------
-    　　#检查是否安装MySQL
-    　　#!/bin/bash
-    　if [\`rpm -qa | grep mysql` -ne 0]
+===========
+
+１.检测是否安装MySQL
+-----------
+
+    　#检查是否安装MySQL
+    　#!/bin/bash
+     if [\`rpm -qa | grep mysql` -ne 0]
     　then
     　　  echo -e "You have download the mysql!\n"
     　else
     　　  echo -e "You don't have download the mysql!\n"
 2.安装MySQL
------------
-        #下载MySQL源码
+------
+
+       #下载MySQL源码
     　　wget https://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.38.tar.gz
     　　echo -e "You have download the sourcode of mysql!\n"
     　　#开始编译MySQL
@@ -22,8 +24,9 @@
     　　useradd -r -g mysql mysql
     　　cd /usr/local/mysql-5.6.38
 3.开始编译源码
---------------
-        echo -e "compiling..."
+--------
+
+       echo -e "compiling..."
     　　#预编译MySQL选项
     　　cmake \
     　　-DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
@@ -37,6 +40,9 @@
     　　make  
     　　make install
     　　make clean
+     
+  4.修改权限
+  ------
     　　#赋予MySQL用户和组的基本权限
     　　chown -Rf mysql:mysql /usr/local/mysql
     　　chown -Rf mysql:mysql /usr/local/mysql/data
@@ -47,6 +53,8 @@
     　　chmod +x /etc/init.d/mysqld
     　　chkconfig --add mysqld
     　　chkconfig mysqld on
+  5.初始化MySQL
+  -------
     　　#初始化MySQL
     　　scripts/mysql_install_db --user=mysql 　　　　--basedir=/usr/local/mysql\ 
     　　--datadir=/home/data/mysql/data\
@@ -61,6 +69,8 @@
     　　mysqladmin -u root password 123456 
     　　#登陆MySQL  
     　　mysql -u root -p 123456
+  6.创建数据库
+  ------
     　　#创建数据库并显示
     　　create database if not exists myapp
     　　show database
