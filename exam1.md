@@ -1,5 +1,4 @@
-<center>配置CentOS的网络环境和SSH登陆</center>
-=============================================
+<center>#配置CentOS的网络环境和SSH登陆</center>
 <br/>
 
 1.修改静态IP
@@ -8,7 +7,7 @@
     <br/>
 　　![](1.png)
     <br/>
-　　
+
 2.修改网络配置
 --------------
 　　使用“vi /etc/sysconfig/network-scripts/ifcfg-ens33”,进入网络配置文件，将ONROOT修改为true.
